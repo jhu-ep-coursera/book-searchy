@@ -1,0 +1,19 @@
+<h1>Searching for - <%= @search_term %></h1>
+
+<table border="1">
+  <tr>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Description</th>
+  </tr>
+  <% @books.each do |book| %>
+    <tr class=<%= cycle('even', 'odd') %>>
+      <td><%= link_to image_tag(book["volumeInfo"]["imageLinks"]["smallThumbnail"], class: "linked-image"),
+                book["volumeInfo"]["previewLink"] if book["volumeInfo"]["imageLinks"]%></td>
+      <td><%= link_to(book["volumeInfo"]["title"], book["volumeInfo"]["previewLink"]) %></td>
+      <td><%= book["volumeInfo"]["authors"].join(',') if book["volumeInfo"]["authors"] %></td>
+      <td><%= sanitize(book["volumeInfo"]["description"]) %></td>
+    </tr>
+  <% end %>
+</table>
