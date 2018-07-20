@@ -9,15 +9,13 @@
     <th></th>
   </tr>
   <% @books.each do |book| %>
-    <% isbn = book["volumeInfo"]["industryIdentifiers"].find { |it| it['type'] == 'ISBN_10' }['identifier'] if book["volumeInfo"]["industryIdentifiers"] %>
-
     <tr class=<%= cycle('even', 'odd') %>>
       <td><%= link_to image_tag(book["volumeInfo"]["imageLinks"]["smallThumbnail"], class: "linked-image"),
                 book["volumeInfo"]["previewLink"] if book["volumeInfo"]["imageLinks"]%></td>
       <td><%= link_to(book["volumeInfo"]["title"], book["volumeInfo"]["previewLink"]) %></td>
       <td><%= book["volumeInfo"]["authors"].join(',') if book["volumeInfo"]["authors"] %></td>
       <td><%= sanitize(book["volumeInfo"]["description"]) %></td>
-      <td><%= link_to("Buy on Amazon", "https://www.amazon.com/dp/#{isbn}?tag=#{@amazon_tag}") if isbn %></td>
+      <td><%= link_to("Buy on Amazon", "https://www.amazon.com/dp/#{book['isbn10']}?tag=#{@amazon_tag}") if book['isbn10'] %></td>
     </tr>
   <% end %>
 </table>
