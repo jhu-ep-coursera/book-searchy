@@ -7,11 +7,9 @@ class Book
   format :json
 
   def self.about term
-
     # replace 1 or more spaces in the term with a plus
     cleaned_up_term = term.gsub /\s+/, '+'
 
     get("", query: { q: "intitle:#{cleaned_up_term}"})["items"] || []
-
   end
 end

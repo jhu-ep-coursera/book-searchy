@@ -1,4 +1,9 @@
-<h1>Searching for - <%= @search_term %></h1>
+<div id='search-form'>
+  <%= form_tag(root_path, method: :get) do %>
+    <%= search_field_tag :looking_for, nil, placeholder: "Book Title..." %>
+    <%= submit_tag 'Search', id: 'submit-button' %>
+  <% end %>
+</div>
 
 <table border="1">
   <tr>
