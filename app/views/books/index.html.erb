@@ -5,6 +5,12 @@
   <% end %>
 </div>
 
+<% if @books.empty? %>
+
+No books found matching '<%= @search_term %>'
+
+<% else %>
+
 <table border="1">
   <tr>
     <th>Image</th>
@@ -24,3 +30,5 @@
     </tr>
   <% end %>
 </table>
+
+<% end %>
